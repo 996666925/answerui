@@ -64,7 +64,7 @@ const QuestionList: FC<Props> = ({
         {isLoading ? (
           <QuestionListLoader />
         ) : (
-          data?.list?.map((li) => {
+          data?.map((li) => {
             return (
               <ListGroup.Item
                 key={li.id}
@@ -86,21 +86,21 @@ const QuestionList: FC<Props> = ({
                 </h5>
                 <div className="d-flex flex-column flex-md-row align-items-md-center small mb-2 text-secondary">
                   <div className="d-flex">
-                    <BaseUserCard
+                    {/* <BaseUserCard
                       data={li.operator}
                       showAvatar={false}
                       className="me-1"
                     />
-                    •
+                    • */}
                     <FormatTime
-                      time={li.operated_at}
+                      time={new Date(li.createTime).getTime()}
                       className="text-secondary ms-1"
-                      preFix={t(li.operation_type)}
+                    // preFix={t(li.operation_type)}
                     />
                   </div>
                   <Counts
                     data={{
-                      votes: li.vote_count,
+                      votes: li.voters,
                       answers: li.answer_count,
                       views: li.view_count,
                     }}
@@ -111,10 +111,10 @@ const QuestionList: FC<Props> = ({
                 <div className="question-tags m-n1">
                   {Array.isArray(li.tags)
                     ? li.tags.map((tag) => {
-                        return (
-                          <Tag key={tag.slug_name} className="m-1" data={tag} />
-                        );
-                      })
+                      return (
+                        <Tag key={tag.slug_name} className="m-1" data={tag} />
+                      );
+                    })
                     : null}
                 </div>
               </ListGroup.Item>

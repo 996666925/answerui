@@ -53,7 +53,7 @@ const Index: FC<Props> = ({ time, preFix, className }) => {
       dateTime={dayjs.unix(time).tz().toISOString()}
       title={dayjs.unix(time).tz().format(t('dates.long_date_with_time'))}>
       {preFix ? `${preFix} ` : ''}
-      {formatTime(time)}
+      {formatTime(time / 1000)}
     </time>
   );
 };

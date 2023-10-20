@@ -82,8 +82,8 @@ const Index: React.FC = () => {
       event.preventDefault();
     }
     const params: LoginReqParams = {
-      e_mail: formData.e_mail.value,
-      pass: formData.pass.value,
+      account: formData.e_mail.value,
+      password: formData.pass.value,
     };
 
     const captcha = passwordCaptcha.getCaptcha();

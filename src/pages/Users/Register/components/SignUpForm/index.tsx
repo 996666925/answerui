@@ -93,9 +93,8 @@ const Index: React.FC<Props> = ({ callback }) => {
       event.preventDefault();
     }
     const reqParams: RegisterReqParams = {
-      name: formData.name.value,
-      e_mail: formData.e_mail.value,
-      pass: formData.pass.value,
+      account: formData.name.value,
+      password: formData.pass.value,
     };
 
     const captcha = emailCaptcha.getCaptcha();

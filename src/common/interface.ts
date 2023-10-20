@@ -82,15 +82,15 @@ export interface AnswerParams extends ImgCodeReq {
 }
 
 export interface LoginReqParams {
-  e_mail: string;
+  account: string;
   /** password */
-  pass: string;
+  password: string;
   captcha_id?: string;
   captcha_code?: string;
 }
 
 export interface RegisterReqParams extends LoginReqParams {
-  name: string;
+
 }
 
 export interface ModifyPasswordReq {

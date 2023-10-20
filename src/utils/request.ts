@@ -28,6 +28,7 @@ class Request {
   instance: AxiosInstance;
 
   constructor(config: AxiosRequestConfig) {
+    config.baseURL = 'http://localhost:5000';
     this.instance = axios.create(config);
     this.instance.interceptors.request.use(
       (requestConfig: AxiosRequestConfig) => {

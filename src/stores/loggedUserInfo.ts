@@ -11,6 +11,7 @@ interface UserInfoStore {
 }
 
 const initUser: UserInfoRes = {
+  user_id: '',
   access_token: '',
   username: '',
   avatar: '',
@@ -37,6 +38,11 @@ const loggedUserInfo = create<UserInfoStore>((set) => ({
     if (!params?.language) {
       params.language = 'Default';
     }
+    params.access_token = params.accessToken;
+
+    let user = decryptJWT(params.access_token);
+    params.username = user.Account;
+    params.user_id = user.UserId;
     set(() => {
       Storage.set(LOGGED_TOKEN_STORAGE_KEY, params.access_token);
       return { user: params };
@@ -52,3 +58,9 @@ const loggedUserInfo = create<UserInfoStore>((set) => ({
 }));
 
 export default loggedUserInfo;
+
+function decryptJWT(token: string): any {
+  token = token.replace(/_/g, "/").replace(/-/g, "+");
+  var json = decodeURIComponent(escape(window.atob(token.split(".")[1])));
+  return JSON.parse(json);
+}

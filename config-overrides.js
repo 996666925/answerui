@@ -1,13 +1,14 @@
 const {
   addWebpackModuleRule,
   addWebpackAlias,
+  overrideDevServer,
 } = require("customize-cra");
 
 const path = require("path");
 const i18nPath = path.resolve(__dirname, "../i18n");
 
 module.exports = {
-  webpack: function(config, env) {
+  webpack: function (config, env) {
     addWebpackAlias({
       "@": path.resolve(__dirname, "src"),
       "@i18n": i18nPath
@@ -26,23 +27,36 @@ module.exports = {
 
     return config;
   },
-  devServer: function(configFunction) {
-    return function(proxy, allowedHost) {
-      const config = configFunction(proxy, allowedHost);
-      config.proxy = [
-        {
-          context: ['/api', '/installation'],
-          target: 'http://localhost:5000',
-          changeOrigin: true,
-          secure: false,
-        },
-        {
-          context: ['/custom.css'],
-          target: process.env.REACT_APP_API_URL,
-        },
-        
-      ];
-      return config;
-    };
+  devServer: overrideDevServer((config) => {
+    return {
+      ...config, proxy: {
+        '/api': {
+          target: 'http://localhost:5000/api'
+        }
+      }
+    }
   }
+  )
+
+
+  // function(configFunction) {
+
+
+  //   return function(proxy, allowedHost) {
+  //     const config = configFunction(proxy, allowedHost);
+  //     config.proxy = [
+  //       {
+  //         context: ['/answer', '/installation'],
+  //         target: process.env.REACT_APP_API_URL,
+  //         changeOrigin: true,
+  //         secure: false,
+  //       },
+  //       {
+  //         context: ['/custom.css'],
+  //         target: process.env.REACT_APP_API_URL,
+  //       }
+  //     ];
+  //     return config;
+  //   };
+  // }
 };

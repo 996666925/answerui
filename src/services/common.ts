@@ -95,10 +95,7 @@ export const modifyAnswer = (params: Type.AnswerParams) => {
 };
 
 export const login = (params: Type.LoginReqParams) => {
-  return request.post<Type.UserInfoRes>(
-    '/answer/api/v1/user/login/email',
-    params,
-  );
+  return request.post<Type.UserInfoRes>('/api/auth/login', params);
 };
 
 export const register = (params: Type.RegisterReqParams) => {

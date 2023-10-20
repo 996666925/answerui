@@ -99,7 +99,7 @@ export const login = (params: Type.LoginReqParams) => {
 };
 
 export const register = (params: Type.RegisterReqParams) => {
-  return request.post<any>('/answer/api/v1/user/register/email', params);
+  return request.post<any>('/api/user', params);
 };
 
 export const logout = () => {

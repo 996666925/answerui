@@ -21,11 +21,6 @@ const Index: React.FC<Props> = ({ callback }) => {
       isInvalid: false,
       errorMsg: '',
     },
-    e_mail: {
-      value: '',
-      isInvalid: false,
-      errorMsg: '',
-    },
     pass: {
       value: '',
       isInvalid: false,
@@ -42,16 +37,8 @@ const Index: React.FC<Props> = ({ callback }) => {
 
   const checkValidated = (): boolean => {
     let bol = true;
-    const { e_mail, pass } = formData;
+    const { pass } = formData;
 
-    if (!e_mail.value) {
-      bol = false;
-      formData.e_mail = {
-        value: '',
-        isInvalid: true,
-        errorMsg: t('email.msg.empty'),
-      };
-    }
 
     if (!pass.value) {
       bol = false;
@@ -81,7 +68,7 @@ const Index: React.FC<Props> = ({ callback }) => {
         matchUrl = new URL(contentText);
       }
       // eslint-disable-next-line no-empty
-    } catch (ex) {}
+    } catch (ex) { }
     if (matchUrl) {
       evt.preventDefault();
       window.open(matchUrl.toString());
@@ -152,28 +139,6 @@ const Index: React.FC<Props> = ({ callback }) => {
           />
           <Form.Control.Feedback type="invalid">
             {formData.name.errorMsg}
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group controlId="email" className="mb-3">
-          <Form.Label>{t('email.label')}</Form.Label>
-          <Form.Control
-            autoComplete="off"
-            required
-            type="e_mail"
-            isInvalid={formData.e_mail.isInvalid}
-            value={formData.e_mail.value}
-            onChange={(e) =>
-              handleChange({
-                e_mail: {
-                  value: e.target.value,
-                  isInvalid: false,
-                  errorMsg: '',
-                },
-              })
-            }
-          />
-          <Form.Control.Feedback type="invalid">
-            {formData.e_mail.errorMsg}
           </Form.Control.Feedback>
         </Form.Group>
 

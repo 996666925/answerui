@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Col } from 'react-bootstrap';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { usePageTags } from '@/hooks';
 import { Unactivate, WelcomeTitle, PluginRender } from '@/components';
@@ -14,8 +14,12 @@ const Index: React.FC = () => {
   const [showForm, setShowForm] = useState(true);
   const { t } = useTranslation('translation', { keyPrefix: 'login' });
   const loginSetting = loginSettingStore((state) => state.login);
+  const navigate = useNavigate();
   const onStep = () => {
-    setShowForm((bol) => !bol);
+    //注册成功后直接跳转首页
+    // setShowForm((bol) => !bol);
+    navigate('/');
+
   };
   usePageTags({
     title: t('sign_up', { keyPrefix: 'page_title' }),

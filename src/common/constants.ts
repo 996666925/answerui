@@ -1,4 +1,4 @@
-export const DEFAULT_SITE_NAME = 'Answer';
+export const DEFAULT_SITE_NAME = '慧问妙答';
 export const DEFAULT_LANG = 'zh_CN';
 export const CURRENT_LANG_STORAGE_KEY = '_a_lang_';
 export const LANG_RESOURCE_STORAGE_KEY = '_a_lang_r_';

@@ -35,7 +35,6 @@ const Index: FC<Props> = ({
       variant: type,
     });
   };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleCallback = (resp) => {
     const callback = action?.on_complete;
     if (callback?.refresh_form_config) {

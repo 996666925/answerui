@@ -76,7 +76,8 @@ const Header: FC = () => {
   };
 
   const handleLogout = async () => {
-    await logout();
+    //退出登录api
+    // await logout();
     clearUserStore();
     window.location.replace(window.location.href);
   };

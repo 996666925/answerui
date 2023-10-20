@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
 
 import { Modal } from '@/components';
 import { loggedUserInfoStore, toastStore, errorCodeStore } from '@/stores';
-import { LOGGED_TOKEN_STORAGE_KEY } from '@/common/constants';
+import { LOGGED_REFRESH_TOKEN_STORAGE_KEY, LOGGED_TOKEN_STORAGE_KEY } from '@/common/constants';
 import { RouteAlias } from '@/router/alias';
 import { getCurrentLang } from '@/utils/localize';
 
@@ -33,9 +33,11 @@ class Request {
     this.instance.interceptors.request.use(
       (requestConfig: AxiosRequestConfig) => {
         const token = Storage.get(LOGGED_TOKEN_STORAGE_KEY) || '';
+        const refresh_token = Storage.get(LOGGED_REFRESH_TOKEN_STORAGE_KEY) || '';
         const lang = getCurrentLang();
         requestConfig.headers = {
-          Authorization: token,
+          'access-token': token,
+          'x-access-token': refresh_token,
           'Accept-Language': lang,
         };
         return requestConfig;

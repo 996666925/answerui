@@ -5,7 +5,7 @@ const {
 } = require("customize-cra");
 
 const path = require("path");
-const i18nPath = path.resolve(__dirname, "../i18n");
+const i18nPath = path.resolve(__dirname, "i18n");
 
 module.exports = {
   webpack: function (config, env) {

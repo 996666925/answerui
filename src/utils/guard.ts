@@ -13,6 +13,7 @@ import {
 } from '@/stores';
 import { RouteAlias } from '@/router/alias';
 import {
+  LOGGED_REFRESH_TOKEN_STORAGE_KEY,
   LOGGED_TOKEN_STORAGE_KEY,
   REDIRECT_PATH_STORAGE_KEY,
 } from '@/common/constants';
@@ -122,16 +123,22 @@ export const pullLoggedUser = async (isInitPull = false) => {
     return;
   }
   pluTimestamp = Date.now();
-  const loggedUserInfo = await getLoggedUserInfo({
-    passingError: true,
-  }).catch((ex) => {
-    pluTimestamp = 0;
-    loggedUserInfoStore.getState().clear(false);
-    console.error(ex);
-  });
-  if (loggedUserInfo) {
-    loggedUserInfoStore.getState().update(loggedUserInfo);
+  // const loggedUserInfo = await getLoggedUserInfo({
+  //   passingError: true,
+  // }).catch((ex) => {
+  //   pluTimestamp = 0;
+  //   loggedUserInfoStore.getState().clear(false);
+  //   console.error(ex);
+  // });
+
+
+  const loggedUserInfo: any = {
+    accessToken: Storage.get(LOGGED_TOKEN_STORAGE_KEY),
+    refreshToken: Storage.get(LOGGED_REFRESH_TOKEN_STORAGE_KEY)
   }
+  // if (loggedUserInfo) {
+    loggedUserInfoStore.getState().init(loggedUserInfo);
+  // }
 };
 
 export const logged = () => {

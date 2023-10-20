@@ -28,7 +28,6 @@ const Index: FC = () => {
     if (!list.length && count && page !== 1) {
       pageNumber = 1;
       setPage(pageNumber);
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       queryNextOne(pageNumber);
       return;
     }

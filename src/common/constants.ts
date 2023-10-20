@@ -3,6 +3,7 @@ export const DEFAULT_LANG = 'zh_CN';
 export const CURRENT_LANG_STORAGE_KEY = '_a_lang_';
 export const LANG_RESOURCE_STORAGE_KEY = '_a_lang_r_';
 export const LOGGED_TOKEN_STORAGE_KEY = '_a_ltk_';
+export const LOGGED_REFRESH_TOKEN_STORAGE_KEY = '_a_lftk_';
 export const REDIRECT_PATH_STORAGE_KEY = '_a_rp_';
 export const CAPTCHA_CODE_STORAGE_KEY = '_a_captcha_';
 export const DRAFT_QUESTION_STORAGE_KEY = '_a_dq_';

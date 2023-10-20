@@ -5,7 +5,7 @@ import request from '@/utils/request';
 import type * as Type from '@/common/interface';
 
 export const useQuestionList = (params: Type.QueryQuestionsReq) => {
-  const apiUrl = `/answer/api/v1/question/page?${qs.stringify(params)}`;
+  const apiUrl = `/api/question/random/10?${qs.stringify(params)}`;
   const { data, error } = useSWR<Type.ListResult, Error>(
     [apiUrl],
     request.instance.get,

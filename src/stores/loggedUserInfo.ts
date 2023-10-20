@@ -2,9 +2,10 @@ import create from 'zustand';
 
 import type { UserInfoRes } from '@/common/interface';
 import Storage from '@/utils/storage';
-import { LOGGED_TOKEN_STORAGE_KEY } from '@/common/constants';
+import { LOGGED_REFRESH_TOKEN_STORAGE_KEY, LOGGED_TOKEN_STORAGE_KEY } from '@/common/constants';
 
 interface UserInfoStore {
+  init: (loggedUserInfo: any) => void;
   user: UserInfoRes;
   update: (params: UserInfoRes) => void;
   clear: (removeToken?: boolean) => void;
@@ -44,7 +45,17 @@ const loggedUserInfo = create<UserInfoStore>((set) => ({
     params.username = user.Account;
     params.user_id = user.UserId;
     set(() => {
-      Storage.set(LOGGED_TOKEN_STORAGE_KEY, params.access_token);
+      Storage.set(LOGGED_TOKEN_STORAGE_KEY, params.accessToken);
+      Storage.set(LOGGED_REFRESH_TOKEN_STORAGE_KEY, params.refreshToken)
+      return { user: params };
+    });
+  },
+  init(params) {
+    let user = decryptJWT(params.accessToken);
+
+    set(() => {
+      params.username = user.Account;
+      params.user_id = user.UserId;
       return { user: params };
     });
   },

@@ -16,7 +16,6 @@ interface Props {
 
 const Index: FC<Props> = ({ redDot, userInfo, logOut }) => {
   const { t } = useTranslation();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigate = useNavigate();
   const { agent: ucAgent } = userCenterStore();
   const handleLinkClick = (evt) => {

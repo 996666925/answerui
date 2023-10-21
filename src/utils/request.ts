@@ -36,8 +36,8 @@ class Request {
         const refresh_token = Storage.get(LOGGED_REFRESH_TOKEN_STORAGE_KEY) || '';
         const lang = getCurrentLang();
         requestConfig.headers = {
-          'access-token': token,
-          'x-access-token': refresh_token,
+          'Authorization': "Bearer " + token,
+          'X-Authorization': "Bearer " + refresh_token,
           'Accept-Language': lang,
         };
         return requestConfig;
